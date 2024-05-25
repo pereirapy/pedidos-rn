@@ -1,0 +1,11 @@
+{
+  "loginPage": {
+    "title": "Logar",
+    "fieldEmail": "E-mail",
+    "fieldPassword": "Senha",
+    "buttonSubmit": "Enviar"
+  },
+  "dashboardPage": {
+    "title": "Dashboard"
+  }
+}

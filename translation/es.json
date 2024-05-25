@@ -1,0 +1,11 @@
+{
+  "loginPage": {
+    "title": "Iniciar Sessión",
+    "fieldEmail": "Correo Electronico",
+    "fieldPassword": "Contraseña",
+    "buttonSubmit": "Enviar"
+  },
+  "dashboardPage": {
+    "title": "Dashboard"
+  }
+}

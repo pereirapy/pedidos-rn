@@ -24,7 +24,7 @@ export const Button = forwardRef<TouchableOpacity, ButtonProps>(
         disabled={disabled || isLoading}>
         {isLoading && (
           <View className="mr-2">
-            <ActivityIndicator color="white" size="large" />
+            <ActivityIndicator color="white" size="small" />
           </View>
         )}
         <Text className={styles.buttonText}>{title}</Text>

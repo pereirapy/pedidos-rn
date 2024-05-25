@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Controller, UseFormReturn } from 'react-hook-form';
-import { View, TextInput as TextInputReactNative, Text } from 'react-native';
+import { View, TextInput as TextInputReactNative, Text, KeyboardTypeOptions } from 'react-native';
 
 type TextInputProps = {
   isMultiLine?: boolean;
@@ -13,6 +13,8 @@ type TextInputProps = {
   label?: string;
   description?: string;
   name: string;
+  keyboardType?: KeyboardTypeOptions;
+  isPassword?: boolean;
 };
 
 const styles = {
@@ -32,16 +34,20 @@ const TextInput = ({
   label,
   description,
   name,
+  keyboardType,
+  isPassword,
 }: TextInputProps) => {
   return (
-    <View className='my-4'>
-      {label && <Text className={styles.label}>{label}</Text>}
+    <View className="my-4">
       <Controller
         control={form.control}
         name={name}
         render={({ field: { onChange, value, onBlur }, fieldState: { error } }) => (
           <>
+            {label && <Text className={`mr-2 my-4 ${error ? 'text-red-700' : 'text-slate-500' }`}>{label}</Text>}
             <TextInputReactNative
+              secureTextEntry={isPassword}
+              keyboardType={keyboardType}
               focusable
               editable={isEditable || true}
               autoCapitalize={autoCapitalize || 'none'}
