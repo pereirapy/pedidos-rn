@@ -11,7 +11,7 @@ type Init18n = {
 
 export const init18n = ({ resources, fallbackLng }: Init18n) => {
   return i18n
-    .use(languageDetector)
+    // .use(languageDetector)
     .use(initReactI18next)
     .init({
       resources,
