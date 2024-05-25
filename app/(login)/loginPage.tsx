@@ -53,7 +53,7 @@ export default function LoginPage() {
           render={({ submit }) => {
             return (
               <>
-                <TextInput form={formReactHook} label={t('loginPage.fieldEmail')} name="email" />
+                <TextInput keyboardType='email-address' form={formReactHook} label={t('loginPage.fieldEmail')} name="email" />
                 <TextInput
                   isPassword
                   form={formReactHook}
