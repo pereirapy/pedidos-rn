@@ -11,6 +11,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import LayoutGeneric from '~/components/LayoutGeneric';
+import { FontAwesome } from '@expo/vector-icons';
 
 const styles = {
   error: 'text-red-700 text-[0.8rem] font-medium opacity-100 mt-4',
@@ -19,6 +20,8 @@ const styles = {
 export default function LoginPage() {
   const router = useRouter();
   const { t } = useTranslation();
+  const [modalVisible, setModalVisible] = useState(false);
+
   const [redirecting, setRedirecting] = useState(false);
 
   const formReactHook = useForm<LoginFormValues>({
@@ -37,15 +40,20 @@ export default function LoginPage() {
       }
     } catch (error) {
       const errorFireBase = error as FirebaseError;
-      const errorMessage = errorFireBase.message;
-      formReactHook.setValue('errorFirebase', errorMessage);
+      const errorCode = errorFireBase.code;
+      formReactHook.setValue('errorFirebase', t(errorCode));
     }
   };
+
 
   const errorMessage = formReactHook.watch('errorFirebase');
 
   return (
-    <LayoutGeneric title={t('loginPage.title')}>
+    <LayoutGeneric
+      title={t('loginPage.title')}
+      showHeaderLanguage
+      >
+
       <View className="m-2">
         <Form
           onSubmit={onSubmit}
@@ -53,7 +61,12 @@ export default function LoginPage() {
           render={({ submit }) => {
             return (
               <>
-                <TextInput keyboardType='email-address' form={formReactHook} label={t('loginPage.fieldEmail')} name="email" />
+                <TextInput
+                  keyboardType="email-address"
+                  form={formReactHook}
+                  label={t('loginPage.fieldEmail')}
+                  name="email"
+                />
                 <TextInput
                   isPassword
                   form={formReactHook}

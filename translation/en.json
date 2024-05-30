@@ -1,4 +1,7 @@
 {
+  "common" : {
+    "close": "Close"
+  },
   "loginPage": {
     "title": "Login",
     "fieldEmail": "Email",
@@ -7,6 +10,14 @@
   },
   "dashboardPage": {
     "title": "Dashboard"
+  },
+  "languages": {
+    "english": "English",
+    "portuguese": "Portuguese",
+    "spanish": "Spanish"
+  },
+  "firebaseErrors": {
+    "auth/invalid-credential" : "The credential is invalid."
   }
 
 }

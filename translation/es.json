@@ -1,4 +1,7 @@
 {
+  "common" : {
+    "close": "Cerrar"
+  },
   "loginPage": {
     "title": "Iniciar Sessión",
     "fieldEmail": "Correo Electronico",
@@ -7,5 +10,14 @@
   },
   "dashboardPage": {
     "title": "Dashboard"
+  },
+  "languages": {
+    "english": "Inglés",
+    "portuguese": "Portugués",
+    "spanish": "Español"
+  },
+  "firebaseErrors": {
+    "auth/invalid-credential" : "Las credenciales son invalidas"
   }
+
 }

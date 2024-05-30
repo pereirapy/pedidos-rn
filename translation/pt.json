@@ -1,4 +1,7 @@
 {
+  "common" : {
+    "close": "Fechar"
+  },
   "loginPage": {
     "title": "Logar",
     "fieldEmail": "E-mail",
@@ -7,5 +10,13 @@
   },
   "dashboardPage": {
     "title": "Dashboard"
+  },
+  "languages": {
+    "english": "Inglês",
+    "portuguese": "Português",
+    "spanish": "Espanhol"
+  },
+  "firebaseErrors": {
+    "auth/invalid-credential" : "As credenciais são inválidas"
   }
 }

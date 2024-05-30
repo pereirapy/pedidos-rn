@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { ButtonHTMLAttributes, forwardRef } from 'react';
 import {
   Text,
   TouchableOpacity,
@@ -12,14 +12,15 @@ interface ButtonProps extends TouchableOpacityProps {
   title: string;
   isLoading?: boolean;
   disabled?: boolean;
+  className?: string;
 }
 
 export const Button = forwardRef<TouchableOpacity, ButtonProps>(
-  ({ onPress, title, isLoading, disabled }, ref) => {
+  ({ onPress, title, isLoading, disabled, className }, ref) => {
     return (
       <TouchableOpacity
         ref={ref}
-        className={styles.button}
+        className={`${styles.button} ${className}`}
         onPress={onPress}
         disabled={disabled || isLoading}>
         {isLoading && (
@@ -35,6 +36,6 @@ export const Button = forwardRef<TouchableOpacity, ButtonProps>(
 
 const styles = {
   button:
-    'bg-indigo-500 active:bg-indigo-700 rounded-[28px] shadow-md p-4 flex flex-row justify-center items-center disabled:opacity-65',
+    'w-full bg-indigo-500 active:bg-indigo-700 rounded-[28px] shadow-md p-4 flex flex-row justify-center items-center disabled:opacity-65',
   buttonText: 'text-white text-lg font-semibold text-center',
 };
