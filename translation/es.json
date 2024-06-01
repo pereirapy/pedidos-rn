@@ -14,7 +14,8 @@
   "languages": {
     "english": "Inglés",
     "portuguese": "Portugués",
-    "spanish": "Español"
+    "spanish": "Español",
+    "title": "Elija un nuevo idioma abajo:"
   },
   "firebaseErrors": {
     "auth/invalid-credential" : "Las credenciales son invalidas"

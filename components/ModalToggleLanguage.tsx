@@ -1,8 +1,12 @@
 import OurModal from './OurModal';
-import { FlatList, StatusBar, Text, TouchableOpacity } from 'react-native';
+import { FlatList, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { languagesEnabled, LanguagesEnabled } from '~/translation';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import storage from '~/utils/storage';
+import { STORAGE_KEY_LANGUAGE_SELECTED } from '~/utils/constants';
+import Loading from './Loading';
 
 type ModalToggleLanguageProps = {
   modalVisible: boolean;
@@ -13,50 +17,76 @@ type ItemProps = {
   nameTranslated: string;
   onPress: () => void;
   backgroundColor: string;
-  textColor: string;
+  icon: 'radio-button-on' | 'radio-button-off';
 };
 
-const Item = ({nameTranslated, onPress, backgroundColor, textColor}: ItemProps) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
-    <Text style={[styles.title, {color: textColor}]}>{nameTranslated}</Text>
+const Item = ({ nameTranslated, onPress, backgroundColor, icon }: ItemProps) => (
+  <TouchableOpacity onPress={onPress} style={[styles.item, { backgroundColor }]}>
+    <View className="flex flex-row">
+      <View className="mr-2">
+        <Ionicons className="" name={icon} size={24} color="white" />
+      </View>
+      <View className="mt-1 w-32">
+        <Text className="" style={[styles.title, { color: 'white' }]}>
+          {nameTranslated}
+        </Text>
+      </View>
+    </View>
   </TouchableOpacity>
 );
 
-
 const ModalToggleLanguage = ({ modalVisible, setModalVisible }: ModalToggleLanguageProps) => {
   const { t, i18n } = useTranslation();
-  const [selectedId, setSelectedId] = useState<string>();
-  
+  const [selectedLanguage, setSelectedLanguage] = useState<string>();
+  const [loading, setLoading] = useState(true);
 
-  const renderItem = ({item}: {item: LanguagesEnabled}) => {
-    const backgroundColor = item.code === selectedId ? '#351cc3' : '#rgb(45, 41, 241)';
-    const color = item.code === selectedId ? 'white' : 'white';
-  
+  const renderItem = ({ item }: { item: LanguagesEnabled }) => {
+    const isCurrent = item.code === selectedLanguage;
+    const backgroundColor = isCurrent ? '#351cc3' : '#rgb(45, 41, 241)';
+    const icon = isCurrent ? 'radio-button-on' : 'radio-button-off';
+
     return (
       <Item
-      nameTranslated={t(`languages.${item.name}`)}
-        onPress={() => setSelectedId(item.code)}
+        nameTranslated={t(`languages.${item.name}`)}
+        onPress={() => setSelectedLanguage(item.code)}
         backgroundColor={backgroundColor}
-        textColor={color}
+        icon={icon}
       />
     );
   };
 
   useEffect(() => {
-    i18n.changeLanguage(selectedId)
-    console.log(selectedId)  
-  },[selectedId])
-  
+    async function getLanguageSaved() {
+      const languageSaved = await storage.load({
+        key: STORAGE_KEY_LANGUAGE_SELECTED,
+        autoSync: true,
+        syncInBackground: false,
+      });
+      if(languageSaved) setSelectedLanguage(languageSaved)
+      setLoading(false);
+    }
+    getLanguageSaved();
+  }, []);
+
+  useEffect(() => {
+    if (!selectedLanguage) return;
+    i18n.changeLanguage(selectedLanguage);
+    storage.save({
+      key: STORAGE_KEY_LANGUAGE_SELECTED,
+      data: selectedLanguage,
+    });
+  }, [selectedLanguage]);
 
   return (
     <OurModal modalVisible={modalVisible} setModalVisible={setModalVisible}>
-      <Text>Elija un nuevo idioma abajo:</Text>
-      <FlatList
+      <Text>{t('languages.title')}</Text>
+      <Loading show={loading} />
+      {!loading && <FlatList
         data={languagesEnabled}
         renderItem={renderItem}
-        keyExtractor={item => item.code}
-        extraData={selectedId}
-      />
+        keyExtractor={(item) => item.code}
+        extraData={selectedLanguage}
+      />}
     </OurModal>
   );
 };
@@ -70,10 +100,9 @@ const styles = {
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
-    
   },
   title: {
-    fontSize: 32,
+    fontSize: 14,
   },
 };
 
