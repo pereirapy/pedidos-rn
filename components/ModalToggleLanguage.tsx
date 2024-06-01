@@ -48,7 +48,7 @@ const ModalToggleLanguage = ({ modalVisible, setModalVisible }: ModalToggleLangu
     return (
       <Item
         nameTranslated={t(`languages.${item.name}`)}
-        onPress={() => setSelectedLanguage(item.code)}
+        onPress={() => saveLanguagePreferred(item.code)}
         backgroundColor={backgroundColor}
         icon={icon}
       />
@@ -57,36 +57,42 @@ const ModalToggleLanguage = ({ modalVisible, setModalVisible }: ModalToggleLangu
 
   useEffect(() => {
     async function getLanguageSaved() {
-      const languageSaved = await storage.load({
-        key: STORAGE_KEY_LANGUAGE_SELECTED,
-        autoSync: true,
-        syncInBackground: false,
-      });
-      if(languageSaved) setSelectedLanguage(languageSaved)
-      setLoading(false);
+      try {
+        const languageSaved = await storage.load({
+          key: STORAGE_KEY_LANGUAGE_SELECTED,
+          autoSync: true,
+          syncInBackground: false,
+        });
+        if (languageSaved) setSelectedLanguage(languageSaved);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
     }
     getLanguageSaved();
   }, []);
 
-  useEffect(() => {
-    if (!selectedLanguage) return;
-    i18n.changeLanguage(selectedLanguage);
+  const saveLanguagePreferred = (newLanguage: string) => {
+    i18n.changeLanguage(newLanguage);
     storage.save({
       key: STORAGE_KEY_LANGUAGE_SELECTED,
-      data: selectedLanguage,
+      data: newLanguage,
     });
-  }, [selectedLanguage]);
+    setSelectedLanguage(newLanguage);
+  };
 
   return (
     <OurModal modalVisible={modalVisible} setModalVisible={setModalVisible}>
       <Text>{t('languages.title')}</Text>
       <Loading show={loading} />
-      {!loading && <FlatList
-        data={languagesEnabled}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.code}
-        extraData={selectedLanguage}
-      />}
+      {!loading && (
+        <FlatList
+          data={languagesEnabled}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.code}
+          extraData={selectedLanguage}
+        />
+      )}
     </OurModal>
   );
 };
