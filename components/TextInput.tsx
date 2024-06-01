@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Controller, UseFormReturn } from 'react-hook-form';
 import { View, TextInput as TextInputReactNative, Text, KeyboardTypeOptions } from 'react-native';
 
@@ -44,7 +44,11 @@ const TextInput = ({
         name={name}
         render={({ field: { onChange, value, onBlur }, fieldState: { error } }) => (
           <>
-            {label && <Text className={`mr-2 my-4 ${error ? 'text-red-700' : 'text-slate-500' }`}>{label}</Text>}
+            {label && (
+              <Text className={`my-4 mr-2 ${error ? 'text-red-700' : 'text-slate-500'}`}>
+                {label}
+              </Text>
+            )}
             <TextInputReactNative
               secureTextEntry={isPassword}
               keyboardType={keyboardType}

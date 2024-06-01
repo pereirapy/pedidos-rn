@@ -1,5 +1,6 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from 'react';
+
 import { auth } from '~/utils/firebase';
 
 export const useAuth = () => {

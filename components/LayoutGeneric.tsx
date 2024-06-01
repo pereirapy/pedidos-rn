@@ -1,8 +1,9 @@
-import { ReactElement, ReactNode, useState } from 'react';
-import { Container } from './Container';
-import { Stack } from 'expo-router';
-import ModalToggleLanguage from './ModalToggleLanguage';
 import { FontAwesome } from '@expo/vector-icons';
+import { Stack } from 'expo-router';
+import { ReactNode, useState } from 'react';
+
+import { Container } from './Container';
+import ModalToggleLanguage from './ModalToggleLanguage';
 
 type LayoutGenericProps = {
   title: string;
@@ -11,8 +12,12 @@ type LayoutGenericProps = {
   showHeaderLanguage?: boolean;
 };
 
-const LayoutGeneric = ({ children, title, headerRight, showHeaderLanguage }: LayoutGenericProps) => {
-
+const LayoutGeneric = ({
+  children,
+  title,
+  headerRight,
+  showHeaderLanguage,
+}: LayoutGenericProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -23,7 +28,7 @@ const LayoutGeneric = ({ children, title, headerRight, showHeaderLanguage }: Lay
           headerRight: () => [
             headerRight,
             <FontAwesome
-              key='language'
+              key="language"
               name="language"
               size={24}
               color="black"
@@ -33,10 +38,7 @@ const LayoutGeneric = ({ children, title, headerRight, showHeaderLanguage }: Lay
         }}
       />
       {showHeaderLanguage && (
-        <ModalToggleLanguage
-          modalVisible={modalVisible}
-          setModalVisible={setModalVisible}
-        />
+        <ModalToggleLanguage modalVisible={modalVisible} setModalVisible={setModalVisible} />
       )}
       <Container>{children}</Container>
     </>

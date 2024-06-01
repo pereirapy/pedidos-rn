@@ -1,7 +1,7 @@
 import { init18n } from 'core/i18n/init';
 import en from 'translation/en.json';
-import pt from 'translation/pt.json';
 import es from 'translation/es.json';
+import pt from 'translation/pt.json';
 
 export const resources = {
   en: {
@@ -24,7 +24,7 @@ const i18n = init18n({ resources, fallbackLng });
 export type LanguagesEnabled = {
   code: string;
   name: string;
-}
+};
 
 export const languagesEnabled: LanguagesEnabled[] = [
   { code: 'en', name: 'english' },

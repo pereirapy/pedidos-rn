@@ -1,5 +1,5 @@
 {
-  "common" : {
+  "common": {
     "close": "Fechar"
   },
   "loginPage": {
@@ -18,6 +18,6 @@
     "title": "Escolha um idioma abaixo:"
   },
   "firebaseErrors": {
-    "auth/invalid-credential" : "As credenciais são inválidas"
+    "auth/invalid-credential": "As credenciais são inválidas"
   }
 }

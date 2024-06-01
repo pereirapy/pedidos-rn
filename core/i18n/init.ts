@@ -2,8 +2,9 @@ import i18n, { Resource } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 import { fallbackChecker } from './fallbackChecker';
-import storage from '~/utils/storage';
+
 import { STORAGE_KEY_LANGUAGE_SELECTED } from '~/utils/constants';
+import storage from '~/utils/storage';
 
 type Init18n = {
   resources: Resource;

@@ -1,5 +1,5 @@
 {
-  "common" : {
+  "common": {
     "close": "Close"
   },
   "loginPage": {
@@ -18,7 +18,6 @@
     "title": "Choose an language below:"
   },
   "firebaseErrors": {
-    "auth/invalid-credential" : "The credential is invalid."
+    "auth/invalid-credential": "The credential is invalid."
   }
-
 }

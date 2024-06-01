@@ -1,11 +1,12 @@
-import { useRouter } from 'expo-router';
-import { Text} from 'react-native';
-import { signOut } from 'firebase/auth';
-import { auth } from '~/utils/firebase';
-import React from 'react';
-import LayoutGeneric from '~/components/LayoutGeneric';
-import { useTranslation } from 'react-i18next';
 import { AntDesign } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
+import { signOut } from 'firebase/auth';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Text } from 'react-native';
+
+import LayoutGeneric from '~/components/LayoutGeneric';
+import { auth } from '~/utils/firebase';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -20,7 +21,7 @@ export default function DashboardPage() {
     <LayoutGeneric
       title={t('dashboardPage.title')}
       headerRight={
-        <AntDesign name="logout" size={20} color="black" onPress={handleSignOut} />
+        <AntDesign key="logout" name="logout" size={20} color="black" onPress={handleSignOut} />
       }>
       <Text>Email logged in: {auth.currentUser?.email}</Text>
     </LayoutGeneric>

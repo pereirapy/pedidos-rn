@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
 import { useRouter } from 'expo-router';
-import { useAuth } from '~/hooks/useAuth';
+import React, { useEffect } from 'react';
+
 import Loading from '~/components/Loading';
+import { useAuth } from '~/hooks/useAuth';
 
 export default function IndexPage() {
   const router = useRouter();

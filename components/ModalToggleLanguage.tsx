@@ -1,12 +1,14 @@
-import OurModal from './OurModal';
-import { FlatList, StatusBar, Text, TouchableOpacity, View } from 'react-native';
-import { useTranslation } from 'react-i18next';
-import { languagesEnabled, LanguagesEnabled } from '~/translation';
-import { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import storage from '~/utils/storage';
-import { STORAGE_KEY_LANGUAGE_SELECTED } from '~/utils/constants';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FlatList, StatusBar, Text, TouchableOpacity, View } from 'react-native';
+
 import Loading from './Loading';
+import OurModal from './OurModal';
+
+import { languagesEnabled, LanguagesEnabled } from '~/translation';
+import { STORAGE_KEY_LANGUAGE_SELECTED } from '~/utils/constants';
+import storage from '~/utils/storage';
 
 type ModalToggleLanguageProps = {
   modalVisible: boolean;
@@ -65,7 +67,7 @@ const ModalToggleLanguage = ({ modalVisible, setModalVisible }: ModalToggleLangu
         });
         if (languageSaved) setSelectedLanguage(languageSaved);
         setLoading(false);
-      } catch (error) {
+      } catch (_) {
         setLoading(false);
       }
     }
@@ -106,6 +108,7 @@ const styles = {
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
+    borderRadius: 9,
   },
   title: {
     fontSize: 14,

@@ -1,17 +1,18 @@
-import { Text, View } from 'react-native';
-import { Form, useForm } from 'react-hook-form';
-import { LoginFormValues, loginFormSchema } from './schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import TextInput from '~/components/TextInput';
-import { Button } from '~/components/Button';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { FirebaseError } from 'firebase/app';
-import { auth } from '~/utils/firebase';
-import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
+import { FirebaseError } from 'firebase/app';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useState } from 'react';
+import { Form, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { Text, View } from 'react-native';
+
+import { LoginFormValues, loginFormSchema } from './schema';
+
+import { Button } from '~/components/Button';
 import LayoutGeneric from '~/components/LayoutGeneric';
-import { FontAwesome } from '@expo/vector-icons';
+import TextInput from '~/components/TextInput';
+import { auth } from '~/utils/firebase';
 
 const styles = {
   error: 'text-red-700 text-[0.8rem] font-medium opacity-100 mt-4',
@@ -20,7 +21,6 @@ const styles = {
 export default function LoginPage() {
   const router = useRouter();
   const { t } = useTranslation();
-  const [modalVisible, setModalVisible] = useState(false);
 
   const [redirecting, setRedirecting] = useState(false);
 
@@ -45,15 +45,10 @@ export default function LoginPage() {
     }
   };
 
-
   const errorMessage = formReactHook.watch('errorFirebase');
 
   return (
-    <LayoutGeneric
-      title={t('loginPage.title')}
-      showHeaderLanguage
-      >
-
+    <LayoutGeneric title={t('loginPage.title')} showHeaderLanguage>
       <View className="m-2">
         <Form
           onSubmit={onSubmit}
