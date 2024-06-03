@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>245467766400-qqo9pg8l44avldne2iqc7ev0b2apg23f.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.245467766400-qqo9pg8l44avldne2iqc7ev0b2apg23f</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAwRke_U1uIKwY05qYRmZqjMWHbR1f-q0s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>245467766400</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.pereirapy.monarca</string>
+	<key>PROJECT_ID</key>
+	<string>monarca-starita</string>
+	<key>STORAGE_BUCKET</key>
+	<string>monarca-starita.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:245467766400:ios:b8255034f9a6d4554c5065</string>
+</dict>
+</plist>

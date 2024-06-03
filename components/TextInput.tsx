@@ -38,14 +38,14 @@ const TextInput = ({
   isPassword,
 }: TextInputProps) => {
   return (
-    <View className="my-4">
+    <View className="my-5">
       <Controller
         control={form.control}
         name={name}
         render={({ field: { onChange, value, onBlur }, fieldState: { error } }) => (
           <>
             {label && (
-              <Text className={`my-4 mr-2 ${error ? 'text-red-700' : 'text-slate-500'}`}>
+              <Text className={`my-5 mr-2 ${error ? 'text-red-700' : 'text-slate-500'}`}>
                 {label}
               </Text>
             )}

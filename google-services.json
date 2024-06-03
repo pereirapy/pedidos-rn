@@ -1,0 +1,50 @@
+{
+  "project_info": {
+    "project_number": "245467766400",
+    "project_id": "monarca-starita",
+    "storage_bucket": "monarca-starita.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245467766400:android:00fd5234eb5215a14c5065",
+        "android_client_info": {
+          "package_name": "com.pereirapy.monarca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245467766400-ns5igshqrgnfju3411vers6mmkg9gdkb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pereirapy.monarca",
+            "certificate_hash": "8c0d6324b26fff322482f9ce43644cc6939b15cc"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYPaERDVTF49H7hnTOeQ4OOeoIQGVrxrg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245467766400-n4r3uvs99fs90fgbe1967m7srrkju41k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "245467766400-qqo9pg8l44avldne2iqc7ev0b2apg23f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pereirapy.monarca"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

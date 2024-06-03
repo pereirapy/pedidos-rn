@@ -77,6 +77,7 @@ export default function LoginPage() {
                   isLoading={formReactHook.formState.isSubmitting}
                   title={t('loginPage.buttonSubmit')}
                   onPress={submit}
+                  className='mt-4'
                 />
               </>
             );
