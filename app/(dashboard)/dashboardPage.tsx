@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native';
 
 import LayoutGeneric from '~/components/LayoutGeneric';
-import { GoogleSignIn, auth } from '~/utils/firebase';
+import { auth } from '~/utils/firebase';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -17,8 +17,6 @@ export default function DashboardPage() {
   const handleSignOut = () => {
     try {
       signOut(auth);
-      GoogleSignIn.revokeAccess();
-      GoogleSignIn.signOut();
       router.replace('/loginPage');
       
     } catch (error) {

@@ -29,6 +29,7 @@ const LayoutGeneric = ({
             headerRight,
             <FontAwesome
               key="language"
+              className='ml-2'
               name="language"
               size={24}
               color="black"

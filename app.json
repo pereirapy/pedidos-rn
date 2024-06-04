@@ -9,7 +9,11 @@
       "output": "static",
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-router", "expo-localization","@react-native-google-signin/google-signin"],
+    "plugins": [
+      "expo-router",
+      "expo-localization",
+      "@react-native-google-signin/google-signin"
+    ],
     "experiments": {
       "typedRoutes": true,
       "tsconfigPaths": true
@@ -22,14 +26,18 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.pereirapy.monarca",
       "infoPlist": {
         "CFBundleURLTypes": [
           {
-            "CFBundleURLSchemes": ["com.googleusercontent.apps.748843865873-95lq2v15vrmfgpucsr4i48oft05a7p04"]
+            "CFBundleURLSchemes": [
+              "com.googleusercontent.apps.748843865873-95lq2v15vrmfgpucsr4i48oft05a7p04"
+            ]
           }
         ]
       },
@@ -40,7 +48,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "./google-services.json",
+      "package": "com.pereirapy.monarca"
     },
     "extra": {
       "router": {

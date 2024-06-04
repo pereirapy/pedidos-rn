@@ -1,7 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import { FirebaseError } from 'firebase/app';
-import { signInWithEmailAndPassword, signInWithCredential, GoogleAuthProvider  } from 'firebase/auth';
+import {
+  signInWithEmailAndPassword,
+  signInWithCredential,
+  GoogleAuthProvider,
+} from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { Form, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -14,8 +18,7 @@ import LayoutGeneric from '~/components/LayoutGeneric';
 import TextInput from '~/components/TextInput';
 import { auth } from '~/utils/firebase';
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
-import {GoogleSignIn} from '../../utils/firebase';
-
+import { GoogleSignIn } from '../../utils/firebase';
 
 const styles = {
   error: 'text-red-700 text-[0.8rem] font-medium opacity-100 mt-4',
@@ -31,7 +34,6 @@ export default function LoginPage() {
     resolver: zodResolver(loginFormSchema),
     mode: 'onChange',
   });
-
 
   const onSubmit = async () => {
     formReactHook.setValue('errorFirebase', '');
@@ -53,11 +55,18 @@ export default function LoginPage() {
     try {
       formReactHook.setValue('errorFirebase', '');
       await GoogleSignIn.hasPlayServices();
-      const user = await GoogleSignIn.signIn();
-      const googleAuthProvider = GoogleAuthProvider.credential(user.idToken);
-      await signInWithCredential(auth,googleAuthProvider)
-      setRedirecting(true);
-      router.replace('/dashboardPage');
+      let user;
+      if (!GoogleSignIn.hasPreviousSignIn()) {
+        user = await GoogleSignIn.signIn();
+      } else {
+        user = GoogleSignIn.getCurrentUser();
+      }
+      if (user) {
+        const googleAuthProvider = GoogleAuthProvider.credential(user.idToken);
+        await signInWithCredential(auth, googleAuthProvider);
+        setRedirecting(true);
+        router.replace('/dashboardPage');
+      } else formReactHook.setValue('errorFirebase', 'User not found');
     } catch (e: any) {
       formReactHook.setValue('errorFirebase', e);
     }
