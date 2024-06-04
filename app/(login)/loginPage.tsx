@@ -1,8 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import { FirebaseError } from 'firebase/app';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import React, { useState } from 'react';
+import { signInWithEmailAndPassword, signInWithCredential, GoogleAuthProvider  } from 'firebase/auth';
+import React, { useEffect, useState } from 'react';
 import { Form, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Text, View } from 'react-native';
@@ -13,6 +13,9 @@ import { Button } from '~/components/Button';
 import LayoutGeneric from '~/components/LayoutGeneric';
 import TextInput from '~/components/TextInput';
 import { auth } from '~/utils/firebase';
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import {GoogleSignIn} from '../../utils/firebase';
+
 
 const styles = {
   error: 'text-red-700 text-[0.8rem] font-medium opacity-100 mt-4',
@@ -29,6 +32,7 @@ export default function LoginPage() {
     mode: 'onChange',
   });
 
+
   const onSubmit = async () => {
     formReactHook.setValue('errorFirebase', '');
     const data: LoginFormValues = formReactHook.getValues();
@@ -42,6 +46,20 @@ export default function LoginPage() {
       const errorFireBase = error as FirebaseError;
       const errorCode = errorFireBase.code;
       formReactHook.setValue('errorFirebase', t(errorCode));
+    }
+  };
+
+  const signInWithGoogle = async () => {
+    try {
+      formReactHook.setValue('errorFirebase', '');
+      await GoogleSignIn.hasPlayServices();
+      const user = await GoogleSignIn.signIn();
+      const googleAuthProvider = GoogleAuthProvider.credential(user.idToken);
+      await signInWithCredential(auth,googleAuthProvider)
+      setRedirecting(true);
+      router.replace('/dashboardPage');
+    } catch (e: any) {
+      formReactHook.setValue('errorFirebase', e);
     }
   };
 
@@ -77,7 +95,12 @@ export default function LoginPage() {
                   isLoading={formReactHook.formState.isSubmitting}
                   title={t('loginPage.buttonSubmit')}
                   onPress={submit}
-                  className='mt-4'
+                  className="mt-4"
+                />
+                <GoogleSigninButton
+                  size={GoogleSigninButton.Size.Icon}
+                  color={GoogleSigninButton.Color.Dark}
+                  onPress={signInWithGoogle}
                 />
               </>
             );

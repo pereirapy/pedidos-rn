@@ -6,15 +6,24 @@ import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native';
 
 import LayoutGeneric from '~/components/LayoutGeneric';
-import { auth } from '~/utils/firebase';
+import { GoogleSignIn, auth } from '~/utils/firebase';
 
 export default function DashboardPage() {
   const router = useRouter();
   const { t } = useTranslation();
 
+
+
   const handleSignOut = () => {
-    signOut(auth);
-    router.replace('/loginPage');
+    try {
+      signOut(auth);
+      GoogleSignIn.revokeAccess();
+      GoogleSignIn.signOut();
+      router.replace('/loginPage');
+      
+    } catch (error) {
+      
+    }
   };
 
   return (

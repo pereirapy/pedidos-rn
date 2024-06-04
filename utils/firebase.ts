@@ -2,6 +2,8 @@ import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import { initializeApp } from 'firebase/app';
 import { initializeAuth, getReactNativePersistence, Auth } from 'firebase/auth';
 import { Platform } from 'react-native';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 // Optionally import the services that you want to use
 // import {...} from "firebase/database";
 // import {...} from "firebase/firestore";
@@ -35,4 +37,10 @@ if (Platform.OS === 'web') {
   });
 }
 
-export { appFirebase, auth };
+GoogleSignin.configure({
+  webClientId: '748843865873-54nlgii3ue9jl8jgpe2kb31o70347ru4.apps.googleusercontent.com',
+  iosClientId: '748843865873-95lq2v15vrmfgpucsr4i48oft05a7p04.apps.googleusercontent.com',
+});
+
+
+export { appFirebase, auth, GoogleSignin as GoogleSignIn };
