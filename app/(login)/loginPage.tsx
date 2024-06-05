@@ -6,7 +6,7 @@ import {
   signInWithCredential,
   GoogleAuthProvider,
 } from 'firebase/auth';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Form, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Text, View } from 'react-native';
@@ -56,19 +56,25 @@ export default function LoginPage() {
       formReactHook.setValue('errorFirebase', '');
       await GoogleSignIn.hasPlayServices();
       let user;
-      if (!GoogleSignIn.hasPreviousSignIn()) {
+      if (!GoogleSignIn.hasPreviousSignIn() || !GoogleSignIn.getCurrentUser()) {
         user = await GoogleSignIn.signIn();
       } else {
         user = GoogleSignIn.getCurrentUser();
       }
       if (user) {
         const googleAuthProvider = GoogleAuthProvider.credential(user.idToken);
+
         await signInWithCredential(auth, googleAuthProvider);
         setRedirecting(true);
         router.replace('/dashboardPage');
       } else formReactHook.setValue('errorFirebase', 'User not found');
-    } catch (e: any) {
-      formReactHook.setValue('errorFirebase', e);
+    } catch (error: any) {
+      console.error(error);
+      const errorFireBase = error as FirebaseError;
+      const errorCode = errorFireBase.message;
+      GoogleSignIn.revokeAccess();
+      GoogleSignIn.signOut();
+      formReactHook.setValue('errorFirebase', errorCode);
     }
   };
 

@@ -1,36 +1,32 @@
-import { AntDesign } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
-import { signOut } from 'firebase/auth';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native';
 
 import LayoutGeneric from '~/components/LayoutGeneric';
-import { auth } from '~/utils/firebase';
+import Loading from '~/components/Loading';
+import { useAuth } from '~/hooks/useAuth';
+import { useRouter } from 'expo-router';
 
 export default function DashboardPage() {
-  const router = useRouter();
   const { t } = useTranslation();
+  const { user, loading } = useAuth();
+  const router = useRouter();
 
 
+  useEffect(() => {
+    if (loading) return;
+    setTimeout(() => {
+      if (!user) router.replace('/loginPage');
+    }, 100);
+  }, [loading, user]);
 
-  const handleSignOut = () => {
-    try {
-      signOut(auth);
-      router.replace('/loginPage');
-      
-    } catch (error) {
-      
-    }
-  };
+
+  if (loading) return <Loading show={loading} />;
 
   return (
-    <LayoutGeneric
-      title={t('dashboardPage.title')}
-      headerRight={
-        <AntDesign key="logout" name="logout" size={20} color="black" onPress={handleSignOut} />
-      }>
-      <Text>Email logged in: {auth.currentUser?.email}</Text>
+    <LayoutGeneric title={t('dashboardPage.title')}>
+      <Text>Email logged in: {user?.email}</Text>
+      <Text>Name logged in: {user?.displayName}</Text>
     </LayoutGeneric>
   );
 }

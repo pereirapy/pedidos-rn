@@ -3,10 +3,10 @@ import { initializeApp } from 'firebase/app';
 import { initializeAuth, getReactNativePersistence, Auth } from 'firebase/auth';
 import { Platform } from 'react-native';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { getFirestore } from 'firebase/firestore';
 
 // Optionally import the services that you want to use
 // import {...} from "firebase/database";
-// import {...} from "firebase/firestore";
 // import {...} from "firebase/functions";
 // import {...} from "firebase/storage";
 
@@ -38,9 +38,11 @@ if (Platform.OS === 'web') {
 }
 
 GoogleSignin.configure({
-  webClientId: '748843865873-54nlgii3ue9jl8jgpe2kb31o70347ru4.apps.googleusercontent.com',
-  iosClientId: '748843865873-95lq2v15vrmfgpucsr4i48oft05a7p04.apps.googleusercontent.com',
+  webClientId: process.env.WEB_CLIENT_ID,
+  iosClientId: process.env.IOS_CLIENT_ID,
 });
 
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(appFirebase);
 
-export { appFirebase, auth, GoogleSignin as GoogleSignIn };
+export { appFirebase, auth, GoogleSignin as GoogleSignIn, db };
