@@ -6,7 +6,8 @@
     "title": "Logar",
     "fieldEmail": "E-mail",
     "fieldPassword": "Senha",
-    "buttonSubmit": "Enviar"
+    "buttonSubmit": "Enviar",
+    "descSocialMedia": "Se preferir pode usar uma das opções abaixo:"
   },
   "dashboardPage": {
     "title": "Dashboard"
@@ -18,6 +19,13 @@
     "title": "Escolha um idioma abaixo:"
   },
   "firebaseErrors": {
-    "auth/invalid-credential": "As credenciais são inválidas"
+    "auth_invalid_credential": "As credenciais são inválidas",
+    "auth_admin_restricted_operation": "Usuário não aprovado para inciar sessão"
+  },
+  "drawer": {
+    "home": "Home",
+    "login": "Iniciar sessão",
+    "logout": "Sair",
+    "users": "Usuários"
   }
 }

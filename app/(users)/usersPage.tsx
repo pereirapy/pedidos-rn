@@ -5,8 +5,10 @@ import { Text } from 'react-native';
 import LayoutGeneric from '~/components/LayoutGeneric';
 import Loading from '~/components/Loading';
 import { useAuth } from '~/hooks/useAuth';
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
-import { db } from '~/utils/firebase';
+import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { auth, db } from '~/utils/firebase';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { Button } from '~/components/Button';
 
 export default function UsersPage() {
   const { t } = useTranslation();
@@ -41,17 +43,40 @@ export default function UsersPage() {
     } else console.log('User not logged in!');
   };
 
+
+  const createNewUser = async () => {
+    try {
+      await setDoc(doc(db, "users", "rodrigoyleila@gmail.com"), {
+        name: "Rodrigo Lucas Pereira",
+        email: "rodrigoyleila@gmail.com",
+        type: "1"
+      });
+      return true
+      
+    } catch (error: any) {
+      const errorCode = error.code;
+      console.error(error.message)
+      return false;
+    }
+
+  }
+
   useEffect(() => {
     getAllUsers();
     getCurrentUser();
   }, []);
 
-  if (loading) return <Loading show={loading} />;
-
   return (
     <LayoutGeneric title={t('usersPage.title')}>
-      <Text>Email logged in: {user?.email}</Text>
-      <Text>Name logged in: {user?.displayName}</Text>
+      {loading ? (
+        <Loading show={loading} />
+      ) : (
+        <>
+          <Text>Email logged in: {user?.email}</Text>
+          <Text>Name logged in: {user?.displayName}</Text>
+          {/* <Button title='Create' onPress={createNewUser} /> */}
+        </>
+      )}
     </LayoutGeneric>
   );
 }

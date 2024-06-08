@@ -6,7 +6,9 @@
     "title": "Login",
     "fieldEmail": "Email",
     "fieldPassword": "Password",
-    "buttonSubmit": "Submit"
+    "buttonSubmit": "Submit",
+    "descSocialMedia": "If you prefer, you can use one of the options below:"
+
   },
   "dashboardPage": {
     "title": "Dashboard"
@@ -18,6 +20,13 @@
     "title": "Choose an language below:"
   },
   "firebaseErrors": {
-    "auth/invalid-credential": "The credential is invalid."
+    "auth_credential": "The credential is invalid.",
+    "auth_admin_restricted_operation": "User not allowed to login"
+  },
+  "drawer": {
+    "home": "Home",
+    "login": "Login",
+    "logout": "Logout",
+    "users": "Users"
   }
 }

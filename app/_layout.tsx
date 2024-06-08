@@ -16,32 +16,13 @@ export const unstable_settings = {
 export default function RootLayout() {
   return (
     <GestureHandlerRootView className="flex-1">
-      <Drawer drawerContent={CustomDrawerContent} screenOptions={{
-        drawerHideStatusBarOnOpen: true,
-        drawerLabelStyle: {marginLeft: -20}
-      }}>
-        <Drawer.Screen
-          name="index"
-          options={{
-            drawerLabel: 'Home',
-            drawerIcon: ({ color, size }) => <AntDesign name="home" size={size} color={color} />,
-          }}
-        />
-          <Drawer.Screen
-            name="(dashboard)/dashboardPage"
-            options={{
-              drawerLabel: 'Dashboard',
-              drawerIcon: ({ color, size }) => <AntDesign name="dashboard" size={size} color={color} />,
-            }}
-          />
-        <Drawer.Screen
-          name="(users)/usersPage"
-          options={{
-            drawerLabel: 'Users',
-            drawerIcon: ({ color, size }) => <Feather name="users" size={size} color={color} />,
-          }}
-        />
-      </Drawer>
+      <Drawer
+        drawerContent={CustomDrawerContent}
+        screenOptions={{
+          drawerHideStatusBarOnOpen: true,
+          drawerLabelStyle: { marginLeft: -20 },
+        }}
+      />
     </GestureHandlerRootView>
   );
 }

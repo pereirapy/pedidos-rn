@@ -6,7 +6,9 @@
     "title": "Iniciar Sessión",
     "fieldEmail": "Correo Electronico",
     "fieldPassword": "Contraseña",
-    "buttonSubmit": "Enviar"
+    "buttonSubmit": "Enviar",
+    "descSocialMedia": "Si deseas puedes usar una de las opciones abajo:"
+
   },
   "dashboardPage": {
     "title": "Dashboard"
@@ -18,6 +20,13 @@
     "title": "Elija un nuevo idioma abajo:"
   },
   "firebaseErrors": {
-    "auth/invalid-credential": "Las credenciales son invalidas"
+    "auth_invalid_credential": "Las credenciales son invalidas",
+    "auth_admin_restricted_operation": "Usuario no permitido iniciar sesión"
+  },
+  "drawer": {
+    "home": "Home",
+    "login": "Iniciar Sesión",
+    "logout": "Salir",
+    "users": "Usuarios"
   }
 }
