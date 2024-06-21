@@ -21,7 +21,7 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
       signOut(auth);
       router.replace('/loginPage');
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   };
 
@@ -35,18 +35,22 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
           />
         </View>
       )}
-      <DrawerItem
-        labelStyle={{ marginLeft: -20 }}
-        label={t('drawer.home')}
-        onPress={() => router.replace('/index')}
-        icon={({ size, color }) => <AntDesign name="home" size={size} color={color} />}
-      />
-      <DrawerItem
-        labelStyle={{ marginLeft: -20 }}
-        label={t('drawer.users')}
-        onPress={() => router.push('/usersPage')}
-        icon={({ size, color }) => <Feather name="users" size={size} color={color} />}
-      />
+      {
+        <DrawerItem
+          labelStyle={{ marginLeft: -20 }}
+          label={t('drawer.home')}
+          onPress={() => router.push(!user ? '/loginPage' : '/dashboardPage')}
+          icon={({ size, color }) => <AntDesign name="home" size={size} color={color} />}
+        />
+      }
+      {user && !loading && (
+        <DrawerItem
+          labelStyle={{ marginLeft: -20 }}
+          label={t('drawer.users')}
+          onPress={() => router.push('/usersPage')}
+          icon={({ size, color }) => <Feather name="users" size={size} color={color} />}
+        />
+      )}
 
       {user && !loading ? (
         <DrawerItem
@@ -55,12 +59,14 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
           onPress={handleSignOut}
           icon={({ size, color }) => <AntDesign name="logout" size={size} color={color} />}
         />
-      ): (<DrawerItem
-        labelStyle={{ marginLeft: -20 }}
-        label={t('drawer.login')}
-        onPress={() => router.replace('/loginPage')}
-        icon={({ size, color }) => <AntDesign name="login" size={size} color={color} />}
-      />)}
+      ) : (
+        <DrawerItem
+          labelStyle={{ marginLeft: -20 }}
+          label={t('drawer.login')}
+          onPress={() => router.replace('/loginPage')}
+          icon={({ size, color }) => <AntDesign name="login" size={size} color={color} />}
+        />
+      )}
     </DrawerContentScrollView>
   );
 }

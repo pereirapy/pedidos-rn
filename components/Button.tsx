@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { ReactElement, forwardRef } from 'react';
 import {
   Text,
   TouchableOpacity,
@@ -9,7 +9,7 @@ import {
 
 interface ButtonProps extends TouchableOpacityProps {
   onPress?: () => void;
-  title: string;
+  title: string | ReactElement;
   isLoading?: boolean;
   disabled?: boolean;
   className?: string;
