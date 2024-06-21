@@ -23,7 +23,7 @@ const Select = ({ data, save, form, label, description, name }: SelectProps) => 
       <Controller
         control={form.control}
         name={name}
-        render={({ field: { onChange }, fieldState: { error } }) => (
+        render={({ field: { onChange, value }, fieldState: { error } }) => (
           <>
             {label && (
               <Text className={`my-5 mr-2 ${error ? 'text-red-700' : 'text-slate-500'}`}>
@@ -31,6 +31,7 @@ const Select = ({ data, save, form, label, description, name }: SelectProps) => 
               </Text>
             )}
             <SelectList
+              onSelect={onChange}
               setSelected={onChange}
               data={data}
               save={save}
