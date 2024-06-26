@@ -8,7 +8,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '~/utils/firebase';
 import { AntDesign, Feather } from '@expo/vector-icons';
 import { useAuth } from '~/hooks/useAuth';
-import { Image, View } from 'react-native';
+import { Alert, Image, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 export default function CustomDrawerContent(props: DrawerContentComponentProps) {
@@ -19,9 +19,9 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
   const handleSignOut = () => {
     try {
       signOut(auth);
-      router.replace('/loginPage');
+      router.push('/loginPage');
     } catch (error) {
-      console.error(error);
+      Alert.alert(String(error));
     }
   };
 
@@ -63,7 +63,7 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
         <DrawerItem
           labelStyle={{ marginLeft: -20 }}
           label={t('drawer.login')}
-          onPress={() => router.replace('/loginPage')}
+          onPress={() => router.push('/loginPage')}
           icon={({ size, color }) => <AntDesign name="login" size={size} color={color} />}
         />
       )}

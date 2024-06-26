@@ -38,14 +38,14 @@ const TextInput = ({
   isPassword,
 }: TextInputProps) => {
   return (
-    <View className="my-5">
+    <View className="my-2">
       <Controller
         control={form.control}
         name={name}
         render={({ field: { onChange, value, onBlur }, fieldState: { error } }) => (
           <>
             {label && (
-              <Text className={`my-5 mr-2 ${error ? 'text-red-700' : 'text-slate-500'}`}>
+              <Text className={`my-2 mr-2 ${error ? 'text-red-700' : 'text-slate-500'}`}>
                 {label}
               </Text>
             )}
@@ -61,7 +61,7 @@ const TextInput = ({
               onChangeText={onChange}
               onBlur={onBlur}
               value={value}
-              className={`${error ? 'border-b-red-700' : 'border-b-gray-500'} ${backgroundColor ?? 'bg-white'} mb-4 border-b p-4`}
+              className={`${error ? 'border-b-red-700' : 'border-b-gray-500'} ${backgroundColor ?? 'bg-white'} mb-4 border-b p-2`}
             />
             {error?.message && <Text className={styles.error}>{String(error?.message)}</Text>}
           </>

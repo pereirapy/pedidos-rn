@@ -54,7 +54,7 @@ export default function LoginPage() {
       await createUserWithEmailAndPassword(auth, data.email, data.password);
       setRedirecting(true);
       formReactHook.reset();
-      router.replace('/dashboardPage');
+      router.push('/dashboardPage');
     } catch (error) {
       const errorFireBase = error as FirebaseError;
       const errorCode = errorFireBase.code;
@@ -71,7 +71,7 @@ export default function LoginPage() {
         await signInWithEmailAndPassword(auth, data.email, data.password);
         setRedirecting(true);
         formReactHook.reset();
-        router.replace('/dashboardPage');
+        router.push('/dashboardPage');
       } else formReactHook.setValue('errorFirebase', 'User not authorized to use this app');
     } catch (error) {
       const errorFireBase = error as FirebaseError;
@@ -100,11 +100,10 @@ export default function LoginPage() {
           await signInWithCredential(auth, googleAuthProvider);
           setRedirecting(true);
           formReactHook.reset();
-          router.replace('/dashboardPage');
+          router.push('/dashboardPage');
         } else formReactHook.setValue('errorFirebase', 'User not authorized to use this app');
       } else formReactHook.setValue('errorFirebase', 'User not found');
     } catch (error: any) {
-      console.error(error);
       const errorFireBase = error as FirebaseError;
       const errorCode = errorFireBase.code;
       GoogleSignIn.revokeAccess();

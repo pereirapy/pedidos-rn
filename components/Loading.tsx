@@ -9,7 +9,7 @@ type LoadingProps = {
 
 export default function Loading({ show }: LoadingProps) {
   return (
-    <Container>
+    <Container className='opacity-50'>
       <Spinner visible={show} color="blue" textStyle={{ color: '#000' }} />
     </Container>
   );

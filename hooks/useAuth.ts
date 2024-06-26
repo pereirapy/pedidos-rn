@@ -19,17 +19,17 @@ export const useAuth = () => {
           if (currentUserData.name !== '')
             await updateProfile(userLoggedIn, { displayName: currentUserData.name });
         } else {
-          // docSnap.data() will be undefined in this case
-          console.log('User not found!');
+          console.error('User not found!');
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      // console.log({user})
       await updateCurrentUser(user);
       setUser(user);
       setLoading(false);
@@ -37,5 +37,5 @@ export const useAuth = () => {
     return () => unsubscribe();
   }, []);
 
-  return { user, loading };
+  return { user, loading, setUser };
 };

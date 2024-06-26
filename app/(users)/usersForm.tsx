@@ -38,9 +38,9 @@ export const UsersForm = ({ form, onSubmit, UsersTypeOptionsTranslated }: UsersF
             <Button
               disabled={!form.formState.isDirty || form.formState.isSubmitting}
               isLoading={form.formState.isSubmitting}
-              title={t('usersPage.buttonSubmit')}
+              title={t('common.save')}
               onPress={submit}
-              className="mt-4"
+              className="my-4"
             />
           </>
         );

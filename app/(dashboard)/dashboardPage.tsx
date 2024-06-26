@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 import LayoutGeneric from '~/components/LayoutGeneric';
 import Loading from '~/components/Loading';
@@ -12,21 +12,27 @@ export default function DashboardPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
 
-
   useEffect(() => {
     if (loading) return;
-    setTimeout(() => {
-      if (!user) router.replace('/loginPage');
-    }, 100);
+    if (!user) router.push('/loginPage');
   }, [loading, user]);
-
-
-  if (loading) return <Loading show={loading} />;
 
   return (
     <LayoutGeneric title={t('dashboardPage.title')}>
-      <Text>Email logged in: {user?.email}</Text>
-      <Text>Name logged in: {user?.displayName}</Text>
+      {loading ? (
+        <Loading show={loading} />
+      ) : (
+        <>
+          {user ? (
+            <View className='px-4'>
+              <Text>Email logged in: {user?.email}</Text>
+              <Text>Name logged in: {user?.displayName}</Text>
+            </View>
+          ) : (
+            <Text>No logged in</Text>
+          )}
+        </>
+      )}
     </LayoutGeneric>
   );
 }

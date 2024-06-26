@@ -1,6 +1,30 @@
 {
   "common": {
-    "close": "Close"
+    "close": "Close",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "dataSaved": "Data saved successfully",
+    "areYouSure": "Are you sure?",
+    "actionCannotUndone": "This action cannot be undone",
+    "no": "No",
+    "yes": "Yes"
+  },
+  "usersPage": {
+    "titlePage": "Users",
+    "title": "Users List",
+    "nameColumn": "Name",
+    "emailColumn": "Email",
+    "titleItemModal": "Options",
+    "fieldName": "Name",
+    "fieldEmail": "Email",
+    "fieldType": "Type",
+    "editTitle": "Edit User",
+    "admin": "Admin",
+    "employee": "Employee",
+    "dealer": "Dealer",
+    "addModalTitle": "Add User"
+
   },
   "loginPage": {
     "title": "Login",

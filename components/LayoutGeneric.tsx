@@ -8,10 +8,9 @@ import ModalToggleLanguage from './ModalToggleLanguage';
 type LayoutGenericProps = {
   title: string;
   children: ReactNode;
-  showHeaderLanguage?: boolean;
 };
 
-const LayoutGeneric = ({ children, title, showHeaderLanguage }: LayoutGenericProps) => {
+const LayoutGeneric = ({ children, title }: LayoutGenericProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (

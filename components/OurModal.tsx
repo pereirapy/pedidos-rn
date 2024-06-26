@@ -1,16 +1,17 @@
 import React, { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, StyleSheet, View } from 'react-native';
-
+import { Modal, StyleSheet, Text, View } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 import { Button } from './Button';
 
 type OurModalProps = {
+  title?: string | ReactNode;
   children: ReactNode;
   modalVisible: boolean;
   setModalVisible: (arg: boolean) => void;
 };
 
-const OurModal = ({ children, modalVisible, setModalVisible }: OurModalProps) => {
+const OurModal = ({ children, title, modalVisible, setModalVisible }: OurModalProps) => {
   const { t } = useTranslation();
 
   return (
@@ -23,13 +24,21 @@ const OurModal = ({ children, modalVisible, setModalVisible }: OurModalProps) =>
           setModalVisible(!modalVisible);
         }}>
         <View style={styles.centeredView}>
-          <View style={styles.modalView}>
+          <View className='' style={styles.modalView}>
+            <View className="mb-4 mt-4 w-full border-slate-700 border-b pb-2">
+              <View className=" flex flex-row">
+                <Text className="ml-14 flex-1 self-center text-center">{title}</Text>
+                <AntDesign
+                  className="mr-2 flex-none"
+                  name="close"
+                  size={32}
+                  color="black"
+                  onPress={() => setModalVisible(!modalVisible)}
+                />
+              </View>
+            </View>
+            
             {children}
-            <Button
-              className="mt-4 w-full"
-              title={t('common.close')}
-              onPress={() => setModalVisible(!modalVisible)}
-            />
           </View>
         </View>
       </Modal>
@@ -49,30 +58,22 @@ const styles = StyleSheet.create({
   },
   modalView: {
     width: '100%',
+    paddingLeft: 4,
+    paddingRight:4,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
-      width: 0,
+      width: 2,
       height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
   },
-  button: {
-    minWidth: 20,
-    elevation: 2,
-  },
   textStyle: {
     color: 'white',
     fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
     textAlign: 'center',
   },
 });

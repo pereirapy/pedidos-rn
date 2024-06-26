@@ -4,8 +4,6 @@ import '../global.css';
 import '../translation';
 
 import { Drawer } from 'expo-router/drawer';
-import { AntDesign } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
 import CustomDrawerContent from '~/components/CustomDrawerContent';
 
 export const unstable_settings = {

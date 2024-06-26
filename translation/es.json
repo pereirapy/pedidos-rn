@@ -1,6 +1,29 @@
 {
   "common": {
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "edit": "Editar",
+    "delete": "Deletar",
+    "save": "Guardar",
+    "dataSaved": "Información guardada correctamente",
+    "areYouSure": "Estas seguro?",
+    "actionCannotUndone": "Esta acción no podra ser deshecha",
+    "no": "No",
+    "yes": "Sí"
+  },
+  "usersPage": {
+    "title": "Usuarios",
+    "titlePage": "Lista de Usuarios",
+    "nameColumn": "Nombre",
+    "emailColumn": "Email",
+    "titleItemModal": "Opciones",
+    "fieldName": "Nombre",
+    "fieldEmail": "Email",
+    "fieldType": "Tipo",
+    "editTitle": "Editar Usuario",
+    "admin": "Admin",
+    "employee": "Funcionario",
+    "dealer": "Revendedor",
+    "addModalTitle": "Añadir Usuario"
   },
   "loginPage": {
     "title": "Iniciar Sessión",

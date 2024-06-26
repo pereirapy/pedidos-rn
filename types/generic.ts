@@ -1,3 +1,1 @@
-type key = string;
-type value = string;
-export type SimpleKeyValue = Record<key, value>;
+export type SimpleKeyValue = {key: any, value: any};
