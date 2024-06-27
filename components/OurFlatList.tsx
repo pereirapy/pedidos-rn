@@ -283,7 +283,7 @@ export default function OurFlatList({
               <Button
                 onPress={() => setModalVisible(true)}
                 title={<AntDesign name="plus" size={24} color="black" />}
-                className="my-2 ml-2 w-16 rounded-[2px] p-2"
+                className="my-2 ml-2 w-12 rounded-[2px] p-1 m-2"
               />
               <TextInput
                 inputMode="search"
@@ -296,7 +296,7 @@ export default function OurFlatList({
                 className="align-self-end flex-1 p-4   pb-4 text-right shadow-lg"
               />
               <AntDesign
-                className="mr-2 mt-4"
+                className="mr-2 mt-3"
                 onPress={() => setSearch(search)}
                 name="search1"
                 size={24}

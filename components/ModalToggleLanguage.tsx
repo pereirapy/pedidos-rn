@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 
 import Loading from './Loading';
 import OurModal from './OurModal';
@@ -84,16 +84,19 @@ const ModalToggleLanguage = ({ modalVisible, setModalVisible }: ModalToggleLangu
   };
 
   return (
-    <OurModal modalVisible={modalVisible} setModalVisible={setModalVisible}>
-      <Text>{t('languages.title')}</Text>
-      <Loading show={loading} />
-      {!loading && (
+    <OurModal
+      modalVisible={modalVisible}
+      setModalVisible={setModalVisible}
+      title={t('languages.title')}>
+      {!loading ? (
         <FlatList
           data={languagesEnabled}
           renderItem={renderItem}
           keyExtractor={(item) => item.code}
           extraData={selectedLanguage}
         />
+      ) : (
+        <Loading show={loading} />
       )}
     </OurModal>
   );
@@ -102,10 +105,9 @@ const ModalToggleLanguage = ({ modalVisible, setModalVisible }: ModalToggleLangu
 const styles = {
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    padding: 20,
+    padding: 10,
     marginVertical: 8,
     marginHorizontal: 16,
     borderRadius: 9,

@@ -127,7 +127,7 @@ export default function LoginPage() {
   const errorMessage = formReactHook.watch('errorFirebase');
 
   return (
-    <LayoutGeneric title={t('loginPage.title')} showHeaderLanguage>
+    <LayoutGeneric title={t('loginPage.title')}>
       <View className="m-2">
         <Form
           onSubmit={onSubmit}

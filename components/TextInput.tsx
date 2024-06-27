@@ -45,7 +45,7 @@ const TextInput = ({
         render={({ field: { onChange, value, onBlur }, fieldState: { error } }) => (
           <>
             {label && (
-              <Text className={`my-2 mr-2 ${error ? 'text-red-700' : 'text-slate-500'}`}>
+              <Text className={`mb-2 mr-2 ${error ? 'text-red-700' : 'text-slate-500'}`}>
                 {label}
               </Text>
             )}
